@@ -1,0 +1,9 @@
+service vendor.keymint-strongbox /vendor/bin/hw/android.hardware.security.keymint3-service.strongbox.nxp
+    class early_hal
+    user jc_strongbox
+    group jc_strongbox system
+    capabilities SYS_ADMIN SYS_NICE WAKE_ALARM
+    disabled
+
+on post-fs && property:ro.boot.strongbox_support=true
+    start vendor.keymint-strongbox
